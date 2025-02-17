@@ -21,6 +21,7 @@ export default function Home() {
       {
         headers: {
           Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Use the token here
         },
       }
     );
