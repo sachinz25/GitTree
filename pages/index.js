@@ -16,38 +16,48 @@ export default function Home() {
   };
 
   const fetchRepoContents = async (owner, repo, path = "") => {
-    const response = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Use the token here
-        },
-      }
-    );
-    return response.data;
+    try {
+      const response = await axios.get(
+        `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+        {
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Use the token here
+          },
+        }
+      );
+      return response.data;
+    } catch (err) {
+      console.error("Error fetching repository contents:", err);
+      throw err;
+    }
   };
 
   const buildTree = async (owner, repo, path = "") => {
-    const contents = await fetchRepoContents(owner, repo, path);
-    const tree = [];
+    try {
+      const contents = await fetchRepoContents(owner, repo, path);
+      const tree = [];
 
-    for (const item of contents) {
-      if (item.type === "dir") {
-        tree.push({
-          name: item.name,
-          type: "dir",
-          children: await buildTree(owner, repo, item.path),
-        });
-      } else {
-        tree.push({
-          name: item.name,
-          type: "file",
-        });
+      for (const item of contents) {
+        if (item.type === "dir") {
+          tree.push({
+            name: item.name,
+            type: "dir",
+            children: await buildTree(owner, repo, item.path),
+          });
+        } else {
+          tree.push({
+            name: item.name,
+            type: "file",
+          });
+        }
       }
-    }
 
-    return tree;
+      return tree;
+    } catch (err) {
+      console.error("Error building tree:", err);
+      throw err;
+    }
   };
 
   const handleGenerate = async () => {
