@@ -21,18 +21,18 @@ GitTree is a simple tool to generate and visualize the file structure of any pub
 
 To run this project on your computer:
 
-1. **Clone the Repository**:
    ```bash
+1. **Clone the Repository**:
    git clone https://github.com/sachinz25/GitTree.git
    cd GitTree
 
-    Install Dependencies:
+2. **Install Dependencies:
     bash
     Copy
 
     npm install
 
-    Start the Development Server:
+3. **Start the Development Server:
     bash
     Copy
 
