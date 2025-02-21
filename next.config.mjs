@@ -3,4 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default nextConfig;
+
+export default {
+  images: {
+    domains: ['github.com'],
+  },
+};
