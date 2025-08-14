@@ -4,6 +4,10 @@ GitTree is a simple tool that generates and visualizes the file structure of any
 
 ## 🚀 How to Use  
 
+```
+Note: For first time it will take time for minute as it will install all the necessary modules and library in ongoing instance (server).
+```
+
 1. **Enter GitHub Repository URL**  
    - Go to the website and enter the GitHub repository URL (e.g., `https://github.com/sachinz25/GitTree`).  
    - Optionally, specify the branch (default: `main`).  
